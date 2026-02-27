@@ -32,11 +32,11 @@ export function useCreateDocument() {
       return api.documents.create.responses[201].parse(data) as Document;
     },
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ 
-        queryKey: [api.documents.listBySubject.path, variables.subjectId] 
+      queryClient.invalidateQueries({
+        queryKey: [api.documents.listBySubject.path, variables.subjectId],
       });
-      queryClient.invalidateQueries({ 
-        queryKey: [api.timeline.listBySubject.path, variables.subjectId] 
+      queryClient.invalidateQueries({
+        queryKey: [api.timeline.listBySubject.path, variables.subjectId],
       });
     },
   });

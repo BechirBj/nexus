@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Save, FileText, MessageSquare } from "lucide-react";
 import { format } from "date-fns";
+import { Input } from "@/components/ui/input";
 
 export default function ReportDetail() {
   const [, params] = useRoute("/reports/:id");
@@ -133,7 +134,7 @@ export default function ReportDetail() {
                 <p className="text-sm text-muted-foreground">Review comments will appear here when collaborating.</p>
               </div>
               <div className="mt-4 pt-4 border-t border-border/50">
-                <Input placeholder="Add a comment..." className="bg-secondary/50 border-none text-sm" />
+                <Input placeholder="Add a comment..." className="bg-secondary/50 border-none text-sm"></Input>
               </div>
             </div>
           </div>

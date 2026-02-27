@@ -1,0 +1,36 @@
+{
+  "1": [
+    {
+      "id": 1,
+      "subjectId": 1,
+      "title": "Introduction to Algebra",
+      "description": "A foundational PDF covering algebraic concepts.",
+      "fileName": "introduction-to-algebra.pdf",
+      "tags": [],
+      "linkedReportIds": [],
+      "uploadedAt": "2024-01-15T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "subjectId": 1,
+      "title": "Advanced Calculus",
+      "description": "Covers differentiation, integration and advanced topics.",
+      "fileName": "advanced-calculus.pdf",
+      "tags": [],
+      "linkedReportIds": [],
+      "uploadedAt": "2024-02-20T09:30:00Z"
+    }
+  ],
+  "2": [
+    {
+      "id": 3,
+      "subjectId": 2,
+      "title": "Physics Basics",
+      "description": "Overview of kinematics and dynamics.",
+      "fileName": "physics-basics.pdf",
+      "tags": [],
+      "linkedReportIds": [],
+      "uploadedAt": "2024-03-01T14:20:00Z"
+    }
+  ]
+}

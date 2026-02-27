@@ -131,46 +131,65 @@ export async function seedDatabase() {
   const subjects = await storage.getSubjects();
   if (subjects.length > 0) return; // Already seeded
 
-  const s1 = await storage.createSubject({
-    title: "Philosophy of Mind",
-    description: "Reading notes and essays on consciousness and identity.",
+  // const s1 = await storage.createSubject({
+  //   title: "Philosophy of Mind",
+  //   description: "Reading notes and essays on consciousness and identity.",
+  //   coverColor: "#fef08a",
+  //   visibility: "private",
+  //   tags: ["philosophy", "cognition"]
+  // });
+
+  
+
+  // const s2 = await storage.createSubject({
+  //   title: "Machine Learning Concepts",
+  //   description: "Key concepts and mathematical foundations of AI.",
+  //   coverColor: "#bfdbfe",
+  //   visibility: "shared",
+  //   tags: ["ai", "tech"]
+  // });
+
+  const s3 = await storage.createSubject({
+    title: "PHP",
+    description: "Reading notes and essays on PHP programming.",
     coverColor: "#fef08a",
     visibility: "private",
-    tags: ["philosophy", "cognition"]
+    tags: ["programming", "php"]
   });
 
-  const s2 = await storage.createSubject({
-    title: "Machine Learning Concepts",
-    description: "Key concepts and mathematical foundations of AI.",
-    coverColor: "#bfdbfe",
-    visibility: "shared",
-    tags: ["ai", "tech"]
-  });
-
-  const d1 = await storage.createDocument({
-    subjectId: s1.id,
-    title: "Descartes Error",
-    description: "Chapter 1 summary",
-    fileName: "descartes-error.pdf",
-    tags: ["book"],
+  const d3 = await storage.createDocument({
+    subjectId: s3.id,
+    title: "PHP Manual",
+    description: "Official PHP documentation",
+    fileName: "PHP_TP2.pdf",
+    tags: ["reference"],
     linkedReportIds: []
   });
 
-  await storage.createReport({
-    subjectId: s1.id,
-    title: "Notes on Dualism",
-    content: "## Overview\n\nDualism is the concept that the mind and body are distinct and separable...\n\n### Key arguments\n\n- The knowledge argument\n- The conceivability argument\n",
-    status: "final",
-    tags: ["drafting"],
-    linkedDocumentIds: [d1.id]
-  });
+  // const d1 = await storage.createDocument({
+  //   subjectId: s1.id,
+  //   title: "Descartes Error",
+  //   description: "Chapter 1 summary",
+  //   fileName: "descartes-error.pdf",
+  //   tags: ["book"],
+  //   linkedReportIds: []
+  // });
 
-  await storage.createDocument({
-    subjectId: s2.id,
-    title: "Attention Is All You Need",
-    description: "Original Transformer paper",
-    fileName: "attention.pdf",
-    tags: ["paper", "reference"],
-    linkedReportIds: []
-  });
+  // await storage.createReport({
+  //   subjectId: s1.id,
+  //   title: "Notes on Dualism",
+  //   content: "## Overview\n\nDualism is the concept that the mind and body are distinct and separable...\n\n### Key arguments\n\n- The knowledge argument\n- The conceivability argument\n",
+  //   status: "final",
+  //   tags: ["drafting"],
+  //   linkedDocumentIds: [d1.id]
+  // });
+
+  // await storage.createDocument({
+  //   subjectId: s2.id,
+  //   title: "Attention Is All You Need",
+  //   description: "Original Transformer paper",
+  //   fileName: "attention.pdf",
+  //   tags: ["paper", "reference"],
+  //   linkedReportIds: []
+  // });
 }

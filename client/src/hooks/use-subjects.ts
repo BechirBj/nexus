@@ -51,24 +51,3 @@ export function useCreateSubject() {
     },
   });
 }
-
-export function useUpdateSubject(id: number) {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (updates: Partial<InsertSubject>) => {
-      const url = buildUrl(api.subjects.update.path, { id });
-      const res = await fetch(url, {
-        method: api.subjects.update.method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updates),
-      });
-      if (!res.ok) throw new Error("Failed to update subject");
-      const data = await res.json();
-      return api.subjects.update.responses[200].parse(data) as Subject;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [api.subjects.list.path] });
-      queryClient.invalidateQueries({ queryKey: [api.subjects.get.path, id] });
-    },
-  });
-}

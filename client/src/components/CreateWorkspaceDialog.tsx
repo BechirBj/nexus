@@ -8,70 +8,56 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useDocuments } from "@/hooks/use-documents";
-import { UploadCloud } from "lucide-react";
+import { useSubjects } from "@/hooks/use-subjects";
+import { FolderPlus } from "lucide-react";
 
-export function CreateDocumentDialog({ subjectId }: { subjectId: number }) {
+export const CreateWorkspaceDialog: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const { addDocument } = useDocuments(subjectId);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file && file.type === "application/pdf") {
-      setSelectedFile(file);
-    }
-  };
+  const { addSubject } = useSubjects();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const fileName =
-      selectedFile?.name || `${title.replace(/\s+/g, "-").toLowerCase()}.pdf`;
-
-    addDocument({
-      subjectId,
+    addSubject({
       title,
       description,
-      fileName,
+      coverColor: "#e2e8f0",
+      visibility: "private",
       tags: [],
-      linkedReportIds: [],
     });
-
     setOpen(false);
     setTitle("");
     setDescription("");
-    setSelectedFile(null);
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" className="gap-2 bg-card hover:bg-secondary">
-          <UploadCloud size={16} /> Add Resource
+          <FolderPlus size={16} /> Add Workspace
         </Button>
       </DialogTrigger>
+
       <DialogContent className="sm:max-w-[425px] rounded-2xl border-none shadow-2xl">
         <DialogHeader>
           <DialogTitle className="font-display text-xl">
-            Add Resource
+            Add Workspace
           </DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-5 pt-4">
+
+        <form onSubmit={handleSubmit} className="space-y-4 pt-4">
           <div className="space-y-2">
             <Label
-              htmlFor="doc-title"
+              htmlFor="ws-title"
               className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
             >
               Title
             </Label>
             <Input
-              id="doc-title"
+              id="ws-title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
@@ -81,35 +67,18 @@ export function CreateDocumentDialog({ subjectId }: { subjectId: number }) {
 
           <div className="space-y-2">
             <Label
-              htmlFor="doc-desc"
+              htmlFor="ws-desc"
               className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
             >
               Context
             </Label>
-            <Textarea
-              id="doc-desc"
+            <Input
+              id="ws-desc"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="bg-secondary/50 border-transparent focus-visible:ring-primary/20 resize-none h-20"
+              className="bg-secondary/50 border-transparent focus-visible:ring-primary/20"
             />
           </div>
-
-          <label className="block p-4 border-2 border-dashed border-border rounded-xl text-center cursor-pointer hover:bg-secondary/30 transition-colors">
-            <input
-              type="file"
-              accept="application/pdf"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-            <p className="text-sm text-muted-foreground">
-              Drag & drop file here, or click to browse
-            </p>
-            <p className="text-xs text-muted-foreground/60 mt-1">
-              {selectedFile
-                ? `Selected: ${selectedFile.name}`
-                : "Mock upload — enter title above to simulate"}
-            </p>
-          </label>
 
           <div className="pt-2 flex justify-end gap-3">
             <Button
@@ -120,11 +89,11 @@ export function CreateDocumentDialog({ subjectId }: { subjectId: number }) {
               Cancel
             </Button>
             <Button type="submit" disabled={!title} className="min-w-[100px]">
-              Upload
+              Create
             </Button>
           </div>
         </form>
       </DialogContent>
     </Dialog>
   );
-}
+};
