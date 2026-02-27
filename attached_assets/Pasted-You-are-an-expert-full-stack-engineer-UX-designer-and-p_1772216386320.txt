@@ -1,0 +1,331 @@
+You are an expert full-stack engineer, UX designer, and product thinker.
+Your task is to vibe-code a web application MVP using Next.js (App Router) and Tailwind CSS, focused on subject-based knowledge organization.
+Use static / mock data only (no backend, no auth, no database).
+The goal is to design a clean, intuitive, future-proof UI and architecture that can later scale to private → public usage.
+
+PRODUCT CONCEPT
+
+Build a Subject-based Knowledge Workspace.
+
+Users can create multiple Subjects (topics, categories, projects).
+Each Subject contains:
+
+PDF documents
+
+Written reports (compte rendus)
+
+The platform is private/local by default, but the UX and structure must clearly anticipate public sharing and collaboration later.
+
+This is not just a file manager.
+It is a thinking and learning workspace.
+
+TECH STACK CONSTRAINTS
+
+Framework: Next.js (App Router)
+
+Styling: Tailwind CSS
+
+Data: Static mock data only (stored in local files)
+
+No authentication
+
+No backend
+
+No file uploads (simulate PDFs with metadata)
+
+Design the codebase as if it will later connect to a real backend.
+
+CORE DATA MODELS (STATIC)
+
+Design static data structures for:
+
+Subject
+
+id
+
+title
+
+description
+
+coverColor or coverImage
+
+createdAt
+
+updatedAt
+
+visibility (private | shared | public)
+
+tags (array of strings)
+
+Document (PDF)
+
+id
+
+subjectId
+
+title
+
+description
+
+fileName (mock)
+
+uploadedAt
+
+tags
+
+linkedReportIds
+
+Report (Compte rendu)
+
+id
+
+subjectId
+
+title
+
+content (mock rich text or markdown)
+
+status (draft | final | archived)
+
+createdAt
+
+updatedAt
+
+linkedDocumentIds
+
+tags
+
+CORE SCREENS TO IMPLEMENT
+1. Dashboard (Subjects Overview)
+
+Purpose: give a mental map of all subjects
+
+Include:
+
+Grid or list of Subject cards
+
+Subject card shows:
+
+Title
+
+Short description
+
+Stats (# documents, # reports)
+
+Last updated date
+
+“Create new subject” CTA (mock)
+
+Filter by tag
+
+Search subjects by name
+
+UX tone: calm, focused, knowledge-oriented.
+
+2. Subject Page (Main Workspace)
+
+This is the heart of the app.
+
+Structure:
+
+Subject header:
+
+Title
+
+Description
+
+Visibility badge (private/shared/public – visual only)
+
+Tags
+
+Tabs or segmented navigation:
+
+Overview
+
+Documents
+
+Reports
+
+Timeline
+
+Tags
+
+3. Subject → Overview Tab
+
+Purpose: contextual understanding.
+
+Include:
+
+Editable-looking summary section (static)
+
+“What is this subject about?” copy
+
+Quick stats
+
+Recently added documents & reports
+
+Linked subjects section (mocked)
+
+4. Subject → Documents Tab
+
+Purpose: manage PDFs as knowledge inputs.
+
+Include:
+
+List of documents
+
+Each document card shows:
+
+Title
+
+Description
+
+Tags
+
+Upload date
+
+Linked reports count
+
+Filters:
+
+By tag
+
+By “linked to report / not linked”
+
+“Add document” button (mock modal)
+
+5. Subject → Reports Tab
+
+Purpose: written thinking & synthesis.
+
+Include:
+
+List of reports
+
+Each report card shows:
+
+Title
+
+Status badge (draft/final/archived)
+
+Tags
+
+Linked documents
+
+Last updated date
+
+“Create report” CTA
+
+Clicking opens a Report Detail Page
+
+6. Report Detail Page
+
+Purpose: focused reading & writing.
+
+Include:
+
+Report title
+
+Status selector (visual only)
+
+Content area (markdown or rich-text styled)
+
+Linked documents sidebar
+
+Tags
+
+Metadata (created / updated dates)
+
+Design for future commenting and collaboration (empty comment section placeholder).
+
+7. Subject → Timeline Tab
+
+Purpose: sense of progression.
+
+Show a chronological feed of:
+
+Document uploads
+
+Report creations
+
+Report updates
+
+Each item links to its detail page.
+
+DESIGN & UX PRINCIPLES
+
+Minimalist, calm, “thinking space” aesthetic
+
+Soft borders, subtle shadows
+
+Clear visual hierarchy
+
+Color used meaningfully (subjects have identity)
+
+Empty states that explain purpose
+
+Icons used sparingly
+
+FUTURE-READY CONSIDERATIONS (DESIGN ONLY)
+
+Even though not implemented, the UI should hint at:
+
+Collaboration (avatars placeholders)
+
+Comments
+
+Sharing
+
+Public subject pages
+
+Forking or duplicating subjects
+
+CODE STRUCTURE EXPECTATIONS
+
+Clear folder organization
+
+Reusable components:
+
+SubjectCard
+
+DocumentCard
+
+ReportCard
+
+Tag
+
+Tabs
+
+Mock data stored in a dedicated file
+
+Clean separation between UI and data
+
+Descriptive comments explaining future extensions
+
+OUTPUT EXPECTATION
+
+Generate using TYPESCRIPT:
+
+Next.ts app structure
+
+Pages and components
+
+Tailwind styling
+
+Static mock data
+
+Thoughtful UI copy
+
+Sensible defaults
+
+Focus on clarity, product thinking, and UX, not just code.
+
+The result should feel like:
+
+“This could become a real product.”
+
+Do not over-engineer.
+Do not add backend logic.
+Do not add authentication.
+
+Just vibe-code a strong, elegant MVP foundation.
