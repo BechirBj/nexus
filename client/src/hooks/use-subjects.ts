@@ -30,8 +30,7 @@ export function useSubject(id: number) {
       try {
         const url = buildUrl(api.subjects.get.path, { id });
         const res = await fetch(url);
-        if (res.status === 404) return null;
-        if (!res.ok) throw new Error("Failed to fetch subject");
+        if (!res.ok) throw new Error(`Failed to fetch subject (${res.status})`);
         const data = await res.json();
         const parsed = api.subjects.get.responses[200].safeParse(data);
         if (!parsed.success) throw new Error("Invalid response format");

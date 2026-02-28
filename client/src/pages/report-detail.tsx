@@ -99,7 +99,7 @@ export default function ReportDetail() {
               />
             ) : (
               <div className="whitespace-pre-wrap mt-8">
-                {report.content.split('\n\n').map((paragraph, i) => (
+                {report.content.split('\n\n').map((paragraph:any, i:any) => (
                   <p key={i} className="mb-6">{paragraph}</p>
                 ))}
               </div>
