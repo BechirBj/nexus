@@ -2,8 +2,8 @@
   {
     "id": 1,
     "subjectId": 1,
-    "title": "PHP Manual Overview",
-    "description": "Official docs quick reference.",
+    "title": "PHP TP1 Cheat Sheet",
+    "description": "Cheat sheet for PHP TP1.",
     "fileName": "PHP_TP1.pdf",
     "tags": ["reference"],
     "uploadedAt": "2026-01-12T11:00:00Z"
@@ -11,8 +11,8 @@
   {
     "id": 2,
     "subjectId": 1,
-    "title": "Object-Oriented PHP",
-    "description": "Classes, traits, interfaces in PHP 8.",
+    "title": "PHP TP2 Cheat Sheet",
+    "description": "Cheat sheet for PHP TP2.",
     "fileName": "PHP_TP2.pdf",
     "tags": ["oop"],
     "uploadedAt": "2026-01-18T14:10:00Z"
@@ -20,8 +20,8 @@
   {
     "id": 3,
     "subjectId": 1,
-    "title": "Composer and Autoloading",
-    "description": "Dependency management fundamentals.",
+    "title": "PHP TP3 Cheat Sheet",
+    "description": "Cheat sheet for PHP TP3.",
     "fileName": "PHP_TP3.pdf",
     "tags": ["tooling"],
     "uploadedAt": "2026-01-25T09:05:00Z"
