@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "PHP",
+    "description": "Reading notes and essays on PHP programming.",
+    "coverColor": "#fef08a",
+    "visibility": "private",
+    "tags": ["programming", "php"],
+    "updatedAt": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Machine Learning Concepts",
+    "description": "Key concepts and mathematical foundations of AI.",
+    "coverColor": "#bfdbfe",
+    "visibility": "shared",
+    "tags": ["ai", "ml", "theory"],
+    "updatedAt": "2026-01-20T09:30:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Modern Web Development",
+    "description": "Front-end frameworks, backend patterns, and tooling.",
+    "coverColor": "#fecaca",
+    "visibility": "public",
+    "tags": ["web", "frontend", "backend"],
+    "updatedAt": "2026-02-10T16:45:00Z"
+  },
+  {
+    "id": 4,
+    "title": "Personal Knowledge Management",
+    "description": "Techniques to capture and organize knowledge.",
+    "coverColor": "#c7d2fe",
+    "visibility": "public",
+    "tags": ["pkm", "notes", "productivity"],
+    "updatedAt": "2026-02-22T08:15:00Z"
+  }
+]

@@ -1,4 +1,5 @@
 import { useRoute, Link } from "wouter";
+import { useEffect, useState } from "react";
 import { useSubject } from "@/hooks/use-subjects";
 import { useDocuments } from "@/hooks/use-documents";
 import { useReports } from "@/hooks/use-reports";
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { DocumentCard } from "@/components/DocumentCard";
+import { type Document as AMDocument } from "@shared/schema";
 
 function StatCard({ title, value, icon: Icon }: any) {
   return (
@@ -44,6 +46,28 @@ export default function SubjectWorkspace() {
   const { data: documents = [] } = useDocuments(subjectId);
   const { data: reports = [] } = useReports(subjectId);
   const { data: timeline = [] } = useTimeline(subjectId);
+
+  const [fallbackDocs, setFallbackDocs] = useState<AMDocument[]>([]);
+  useEffect(() => {
+    let cancelled = false;
+    async function loadFallback() {
+      if (documents.length > 0 || !subjectId || isNaN(subjectId)) return;
+      try {
+        const res = await fetch("/documents.json");
+        if (!res.ok) return;
+        const list = (await res.json()) as any[];
+        const filtered = list.filter((d: any) => d.subjectId === subjectId);
+        if (!cancelled) setFallbackDocs(filtered as AMDocument[]);
+      } catch {
+      }
+    }
+    loadFallback();
+    return () => {
+      cancelled = true;
+    };
+  }, [documents.length, subjectId]);
+
+  const docsToShow = documents.length > 0 ? documents : fallbackDocs;
 
   if (loadingSub) {
     return (
@@ -102,7 +126,7 @@ export default function SubjectWorkspace() {
               {
                 id: "documents",
                 icon: FileText,
-                label: `Resources (${documents.length})`,
+                label: `Resources (${docsToShow.length})`,
               },
               {
                 id: "reports",
@@ -129,7 +153,7 @@ export default function SubjectWorkspace() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <StatCard
                 title="Resources Collected"
-                value={documents.length}
+                value={docsToShow.length}
                 icon={FileText}
               />
               <StatCard
@@ -168,7 +192,7 @@ export default function SubjectWorkspace() {
           </TabsContent>
 
           <TabsContent value="documents" className="mt-0 outline-none">
-            {documents.length === 0 ? (
+            {docsToShow.length === 0 ? (
               <EmptyState
                 icon={FileText}
                 title="No resources yet"
@@ -177,7 +201,7 @@ export default function SubjectWorkspace() {
               />
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {documents.map((doc: any) => (
+                {docsToShow.map((doc: any) => (
                   <DocumentCard key={doc.id} document={doc} />
                 ))}
               </div>
@@ -194,7 +218,7 @@ export default function SubjectWorkspace() {
               />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {reports.map((report) => (
+                {reports.map((report:any) => (
                   <Link key={report.id} href={`/reports/${report.id}`}>
                     <Card className="p-6 bg-card border-border/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full flex flex-col group">
                       <div className="flex justify-between items-start mb-4">

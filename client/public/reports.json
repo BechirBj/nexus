@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "subjectId": 1,
+    "title": "State of PHP 8.x",
+    "content": "Overview of new features, performance, and migration tips.",
+    "status": "final",
+    "tags": ["php", "overview"],
+    "updatedAt": "2026-02-05T12:00:00Z"
+  },
+  {
+    "id": 2,
+    "subjectId": 1,
+    "title": "Design Patterns in PHP",
+    "content": "Applying Strategy, Factory, and Repository patterns with examples.",
+    "status": "draft",
+    "tags": ["patterns"],
+    "updatedAt": "2026-02-12T09:20:00Z"
+  },
+  {
+    "id": 3,
+    "subjectId": 2,
+    "title": "Bias-Variance Tradeoff",
+    "content": "Intuition, math, and diagnostic tools for under/overfitting.",
+    "status": "final",
+    "tags": ["ml", "theory"],
+    "updatedAt": "2026-01-31T15:40:00Z"
+  },
+  {
+    "id": 4,
+    "subjectId": 3,
+    "title": "SSR vs. CSR vs. Islands",
+    "content": "Evaluating rendering strategies and their trade-offs.",
+    "status": "archived",
+    "tags": ["architecture", "web"],
+    "updatedAt": "2026-02-11T18:05:00Z"
+  }
+]

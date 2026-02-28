@@ -6,13 +6,20 @@ export function useReports(subjectId: number) {
   return useQuery({
     queryKey: [api.reports.listBySubject.path, subjectId],
     queryFn: async () => {
-      const url = buildUrl(api.reports.listBySubject.path, { subjectId });
-      const res = await fetch(url);
-      if (!res.ok) throw new Error("Failed to fetch reports");
-      const data = await res.json();
-      const parsed = api.reports.listBySubject.responses[200].safeParse(data);
-      if (!parsed.success) throw new Error("Invalid response format");
-      return parsed.data as Report[];
+      try {
+        const url = buildUrl(api.reports.listBySubject.path, { subjectId });
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("Failed to fetch reports");
+        const data = await res.json();
+        const parsed = api.reports.listBySubject.responses[200].safeParse(data);
+        if (!parsed.success) throw new Error("Invalid response format");
+        return parsed.data as Report[];
+      } catch {
+        const fallback = await fetch("/reports.json");
+        if (!fallback.ok) throw new Error("Failed to load reports.json");
+        const list = (await fallback.json()) as Report[];
+        return list.filter((r: any) => r.subjectId === subjectId) as any;
+      }
     },
     enabled: !!subjectId && !isNaN(subjectId),
   });
@@ -22,14 +29,22 @@ export function useReport(id: number) {
   return useQuery({
     queryKey: [api.reports.get.path, id],
     queryFn: async () => {
-      const url = buildUrl(api.reports.get.path, { id });
-      const res = await fetch(url);
-      if (res.status === 404) return null;
-      if (!res.ok) throw new Error("Failed to fetch report");
-      const data = await res.json();
-      const parsed = api.reports.get.responses[200].safeParse(data);
-      if (!parsed.success) throw new Error("Invalid response format");
-      return parsed.data as Report;
+      try {
+        const url = buildUrl(api.reports.get.path, { id });
+        const res = await fetch(url);
+        if (res.status === 404) return null;
+        if (!res.ok) throw new Error("Failed to fetch report");
+        const data = await res.json();
+        const parsed = api.reports.get.responses[200].safeParse(data);
+        if (!parsed.success) throw new Error("Invalid response format");
+        return parsed.data as Report;
+      } catch {
+        const fallback = await fetch("/reports.json");
+        if (!fallback.ok) throw new Error("Failed to load reports.json");
+        const list = (await fallback.json()) as Report[];
+        const found = list.find((r: any) => r.id === id) ?? null;
+        return found as any;
+      }
     },
     enabled: !!id && !isNaN(id),
   });
