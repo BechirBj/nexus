@@ -10,8 +10,8 @@
   },
   {
     "id": 2,
-    "title": "Machine Learning Concepts",
-    "description": "Key concepts and mathematical foundations of AI.",
+    "title": "Projet Semestriel",
+    "description": "Projet semestriel de SINF2",
     "coverColor": "#bfdbfe",
     "visibility": "shared",
     "tags": ["ai", "ml", "theory"],
